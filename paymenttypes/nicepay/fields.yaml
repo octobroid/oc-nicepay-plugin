@@ -1,0 +1,49 @@
+# ===================================
+#  Gateway Field Definitions
+# ===================================
+
+fields:
+    image:
+        label: Payment Image
+        tab: General
+        span: auto
+        type: mediafinder
+
+    # test_mode:
+    #     label: Sandbox mode
+    #     type: switch
+    #     tab: Configuration
+    #     comment: Use the NicePay Sandbox Test Environment to try out payments using this gateway.
+
+    payment_method:
+        label: Payment method
+        tab: Configuration
+        required: true
+        type: radio
+        options:
+            '01': Credit Card
+            '02': Virtual Account
+
+    bank_code:
+        label: Bank
+        comment: 
+        tab: Configuration
+        trigger: 
+            action: show
+            field: payment_method
+            condition: value[02]
+
+        type: balloon-selector
+        options:
+            CENA: BCA Virtual Account
+            BNIN: BNI Virtual Account
+            BMRI: Mandiri Virtual Account
+            BBBA: Permata Virtual Account
+            IBBK: BII Maybank Virtual Account
+
+    invoice_status:
+        label: Invoice status
+        comment: Select status to assign the invoice in case of successful payment.
+        tab: Configuration
+        span: auto
+        type: dropdown

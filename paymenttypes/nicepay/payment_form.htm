@@ -1,0 +1,9 @@
+{% set hiddenFields = paymentMethod.getHiddenFields(paymentMethod, invoice) %}
+
+{{ form_ajax('onPay') }}
+    {% for name, value in hiddenFields %}
+    <input type="hidden" value="{{ value }}" name="{{ name }}"/>
+    {% endfor %}
+
+    <button class="btn btn-success btn-block" id="pay-button">BAYAR SEKARANG</button>
+{{ form_close() }}
